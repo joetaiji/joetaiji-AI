@@ -1,0 +1,182 @@
+/* ==========================================================================
+기본 스타일
+========================================================================== */
+
+html {
+    font-size: var(--font-size);
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: var(--line-height);
+    font-family: var(--font-type);
+    color: var(--gray-90);
+}
+
+*:focus {
+    outline: 2px solid var(--primary-50);
+    outline-offset: -2px;
+    box-shadow: inset 0 0 0 3px var(--gray-0);
+}
+
+::selection {
+    background: var(--primary-60);
+    color: var(--gray-0);
+}
+
+/* Skip Navigation */
+#skip-nav {
+    position: absolute;
+    top: -1000px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#skip-nav a {
+    display: block;
+    text-align: center;
+    line-height: 0;
+    font-size: 0;
+}
+
+#skip-nav a:focus,
+#skip-nav a:hover,
+#skip-nav a:active {
+    position: absolute;
+    top: 1000px;
+    left: 0;
+    padding: 0.8rem 0;
+    display: block;
+    height: 4.5rem;
+    background: #20262c;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 3rem;
+    text-decoration: none;
+}
+
+
+/* ==========================================================================
+유틸리티
+========================================================================== */
+
+.hidden,
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 96%;
+}
+
+.iframe {
+    display: block;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+텍스트
+========================================================================== */
+
+$colors: "primary", "secondary", "gray";
+
+.text {
+    @each $txt in left, center, right {
+        &-#{$txt} { text-align: $txt !important; }
+    }
+
+    &-bold { font-weight: 700; }
+
+    &-underline {
+        text-decoration: underline !important;
+        text-underline-position: under;
+    }
+
+    &-link {
+        text-decoration: underline;
+        color: var(--primary-50);
+        display: inline-flex;
+        gap: .6rem;
+        align-items: center;
+
+        &.ico-go,
+        &.ico-arr {
+            &::before,
+            &::after {
+                background: var(--primary-50);
+                width: 1.7rem;
+                height: 1.7rem;
+            }
+        }
+    }
+
+    @each $color in $colors {
+        &-#{$color} { color: var(--#{$color}-60) !important; }
+    }
+
+    &-point { color: var(--point-60) !important; }
+}
+
+
+/* ==========================================================================
+배경색
+========================================================================== */
+
+@each $color in $colors {
+    .bg-#{$color} { background-color: var(--#{$color}-5); }
+}
+
+
+/* ==========================================================================
+Flex 정렬
+========================================================================== */
+
+@each $jc in center, space-around, space-evenly, space-between, flex-end, flex-start {
+    .jc-#{$jc} { justify-content: $jc !important; }
+}
+
+@each $ai in flex-start, center, flex-end {
+    .ai-#{$ai} { align-items: $ai !important; }
+}
+
+
+/* ==========================================================================
+너비
+========================================================================== */
+
+@for $i from 1 through 100 {
+    @if $i <= 20 or $i % 5 == 0 {
+        .w#{$i} { width: $i * 1%; }
+    }
+}
+
+
+/* ==========================================================================
+마진
+========================================================================== */
+
+$margin-directions: (l: left, t: top, r: right, b: bottom);
+
+@each $key, $dir in $margin-directions {
+    @for $i from 0 through 10 {
+        .m#{$key}#{$i} { margin-#{$dir}: $i * 0.8rem !important; }
+    }
+    .m#{$key}a { margin-#{$dir}: auto; }
+}
