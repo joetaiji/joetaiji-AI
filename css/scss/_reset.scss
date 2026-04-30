@@ -8,18 +8,15 @@ html { position: relative; height: 100vh; scroll-behavior: smooth; }
 
 *, ::after, ::before { box-sizing: border-box; }
 
-body { margin: 0; padding: 0; font-size: var(--fontSize); letter-spacing: var(--letterSpace); font-weight: 400; font-family: var(--fontFamily); line-height: 1.5; color: var(--fontColor); word-break: keep-all; overflow-x: hidden; }
+body { margin: 0; padding: 0; line-height: 1.5; word-break: keep-all; overflow-x: hidden; }
 
 dd, dl, dt, li, ol, ul { margin: 0; padding: 0; list-style: none; }
 
-h1, h2, h3, h4, h5, h6, th { color:var(--gray-90); }
 h1, h2, h3, h4, h5, h6, p, figcaption, figure, form { margin: 0; padding: 0;}
 
 a { color: inherit; text-decoration: none; text-underline-position: under;
     &:hover { text-decoration: none; }
 }
-
-*:focus { outline: 2px dotted var(--gray-50); }
 
 img { border: 0; display: inline-block; vertical-align: top; font-size: 0; max-width: 100%; }
 
@@ -27,7 +24,7 @@ table { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: 
 
 caption, legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; border: 0; }
 
-input::placeholder { color: var(--gray-70); }
+input::placeholder { color: #20262c; }
 
 input[disabled] { cursor: not-allowed; }
 
@@ -61,6 +58,3 @@ textarea { resize: vertical; }
 details {
 	summary { cursor: pointer; }
 }
-
-mark { background: var(--primary-5); color: var(--primary-60); font-weight: bold; padding: 0 .3rem; }
-::selection { background: var(--primary-60); color:var(--white);}

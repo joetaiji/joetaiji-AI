@@ -157,26 +157,11 @@ mark {
 /* ==========================================================================
 기본 스타일
 ========================================================================== */
-html {
-  font-size: var(--font-size);
-}
-
 body {
   font-size: 1.6rem;
-  line-height: var(--line-height);
-  font-family: var(--font-type);
-  color: var(--gray-90);
-}
-
-*:focus {
-  outline: 2px solid var(--primary-50);
-  outline-offset: -2px;
-  box-shadow: inset 0 0 0 3px var(--gray-0);
-}
-
-::selection {
-  background: var(--primary-60);
-  color: var(--gray-0);
+  line-height: 1.5;
+  font-family: "Noto Sans KR";
+  color: #20262c;
 }
 
 /* Skip Navigation */
@@ -687,7 +672,6 @@ Flex 정렬
 디자인 토큰 (로컬)
 ========================================================================== */
 :root {
-  --font-type: "Noto Sans KR";
   --font-size: 10px;
 }
 
