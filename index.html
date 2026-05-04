@@ -6,75 +6,826 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta name="title" content="메인 홈페이지">
-	<meta name="description" content="국민과 함께하는 신뢰받는 기관으로 최선을 다해 섬기겠습니다.">
-	<meta name="keyword" content="기관, 서비스, 복지, 의료, 교육, 공지사항">
+	<meta name="title" content="문학광장 - 문장웹진">
+	<meta name="description" content="20년 간 다양한 장르의 작가들이 기고한 작품들을 만나는 곳, 문장웹진입니다.">
+	<meta name="keyword" content="문장웹진, 문학광장, 시, 소설, 비평, 기획, 모색, 글틴">
 	<meta name="author" content="">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="">
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="메인 홈페이지">
-	<meta property="og:description" content="국민과 함께하는 신뢰받는 기관으로 최선을 다해 섬기겠습니다.">
+	<meta property="og:title" content="문학광장 - 문장웹진">
+	<meta property="og:description" content="20년 간 다양한 장르의 작가들이 기고한 작품들을 만나는 곳, 문장웹진입니다.">
+	<meta property="og:site_name" content="문학광장">
 
-	<title>메인 홈페이지</title>
-    <!-- 폰트 파일 직접 preload -->
-    <link rel="preload" as="font" type="font/woff2" href="fonts/pretendardGOV/file/PretendardGOV-Regular.woff2" crossorigin>
+	<title>문학광장 - 문장웹진 메인</title>
 
-    <!-- 폰트 CSS -->
-    <link rel="stylesheet" href="fonts/notosansKR/font_notosansKR.css">
-    <link rel="stylesheet" href="fonts/pretendardGOV/font_pretendardGOV.css">
-    <link rel="stylesheet" href="fonts/remixicon/font_remixicon.css">	
+	<!-- 폰트 preload -->
+	<link rel="preload" as="font" type="font/woff2" href="fonts/pretendardGOV/file/PretendardGOV-Bold.subset.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff2" href="fonts/pretendardGOV/file/PretendardGOV-SemiBold.subset.woff2" crossorigin>
+
+	<!-- 폰트 CSS -->
+	<link rel="stylesheet" href="fonts/pretendardGOV/font_pretendardGOV.css">
+	<link rel="stylesheet" href="fonts/remixicon/font_remixicon.css">
+
+	<!-- Swiper CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.css">
 
 	<!-- 스타일 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.30/fullpage.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.css">
 	<link rel="stylesheet" href="css/output.css">
 
-    <!-- jQuery -->
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.30/fullpage.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery-3.7.1.min.js"></script>
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+	<!-- Swiper -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.js"></script>
+
+	<!-- GSAP + ScrollTrigger -->
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
+	<!-- 스크린리더 라이브 리전 -->
+	<div id="sr-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
 	<!-- 스킵내비 -->
 	<div id="skip-nav" aria-label="스킵 내비게이션">
-        <a href="#container">본문 바로가기</a>
-	</div>	
+		<a href="#gnb">주요 메뉴 바로가기</a>
+		<a href="#contents">본문 바로가기</a>
+	</div>
 
 	<div id="wrap">
 
-        <header id="header" class="header">
-            <div class="inner">
-                <h1 class="logo">
-                    <a href="./">
-        
-                    </a>
-                </h1>
-            </div>
-        </header>
-        <!-- //헤더 영역 -->
-        <!-- 메인 영역 -->
-        <main id="contents" class="main">           
-            <div class="inner">
-        
-            </div>
-        </main>
-        <!-- //메인 영역 -->
-        <!-- 푸터 -->
-        <footer id="footer" class="footer">
-            <div class="inner">
-        
-            </div>
-        </footer>
-        <!-- //푸터 -->
-        
-       
+		<!-- GNB (Figma: GNB component, node 3429:48710) -->
+		<header id="header" class="gnb" role="banner">
+			<!-- 상단 유틸: 공식 누리집 문구 · 한국문화예술위원회 · 주요사업 · 아르코소식 · SNS -->
+			<div class="gnb-masthead">
+				<div class="gnb-masthead-left">
+					<span class="gnb-masthead-flag" aria-hidden="true">
+						<img src="https://www.figma.com/api/mcp/asset/07f20a43-5add-46e3-b532-6799b61ff482" alt="" width="24" height="24">
+					</span>
+					<p class="gnb-masthead-txt">이 누리집은 대한민국 공식 전자정부 누리집입니다.</p>
+					<span class="gnb-masthead-chevron" aria-hidden="true">
+						<img src="https://www.figma.com/api/mcp/asset/4e99ace2-1d11-4f4f-b6ae-576466f4999c" alt="" width="10" height="5">
+					</span>
+				</div>
+				<div class="gnb-masthead-mid">
+					<img class="gnb-arko-logo"
+						src="https://www.figma.com/api/mcp/asset/e407409c-7f7d-4c44-888a-78ace0958e1e"
+						alt="한국문화예술위원회"
+						width="169"
+						height="18">
+					<span class="gnb-masthead-divider" aria-hidden="true">
+						<img src="https://www.figma.com/api/mcp/asset/6b78f197-d440-47f5-bcb6-4ae02fc5e326" alt="" width="1" height="10">
+					</span>
+					<a href="#" class="gnb-masthead-link">주요사업</a>
+					<span class="gnb-masthead-divider" aria-hidden="true">
+						<img src="https://www.figma.com/api/mcp/asset/6b78f197-d440-47f5-bcb6-4ae02fc5e326" alt="" width="1" height="10">
+					</span>
+					<a href="#" class="gnb-masthead-link">아르코소식</a>
+				</div>
+				<ul class="gnb-social-list" role="list">
+					<li class="gnb-social-item">
+						<a href="#" class="gnb-social-link" target="_blank" rel="noopener noreferrer" aria-label="문학광장 유튜브(새 창)">
+							<img src="https://www.figma.com/api/mcp/asset/f1e22ef1-fcfb-44ae-b02a-794e5beecc90" alt="" width="24" height="24">
+						</a>
+					</li>
+					<li class="gnb-social-item">
+						<a href="#" class="gnb-social-link" target="_blank" rel="noopener noreferrer" aria-label="문학광장 인스타그램(새 창)">
+							<img src="https://www.figma.com/api/mcp/asset/e24a21cb-5f78-48e6-9055-df655883c613" alt="" width="24" height="24">
+						</a>
+					</li>
+					<li class="gnb-social-item">
+						<a href="#" class="gnb-social-link" target="_blank" rel="noopener noreferrer" aria-label="문학광장 소셜 채널(새 창)">
+							<img src="https://www.figma.com/api/mcp/asset/06c4b356-b300-41d4-b656-92ef6aa3290d" alt="" width="24" height="24">
+						</a>
+					</li>
+					<li class="gnb-social-item">
+						<a href="#" class="gnb-social-link" target="_blank" rel="noopener noreferrer" aria-label="문학광장 블로그(새 창)">
+							<img src="https://www.figma.com/api/mcp/asset/4f108e74-ee13-4a40-9ac0-eb1c63489cae" alt="" width="24" height="24">
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- 메인 GNB: 로고 · 중앙 메뉴 · 로그인·검색·전체메뉴 -->
+			<div class="gnb-main">
+				<h1 class="gnb-brand">
+					<a href="./" class="gnb-brand-link">
+						<img class="gnb-brand-img"
+							src="https://www.figma.com/api/mcp/asset/2bac78bc-77db-4969-8107-4b2422f75131"
+							alt="문학광장"
+							width="180"
+							height="45"
+							fetchpriority="high">
+					</a>
+				</h1>
+				<nav id="gnb" class="gnb-nav" aria-label="주요 메뉴">
+					<ul class="gnb-list" role="list">
+						<li class="gnb-item"><a href="#" class="gnb-link" aria-current="page">문학광장</a></li>
+						<li class="gnb-item"><a href="#" class="gnb-link">문장웹진</a></li>
+						<li class="gnb-item"><a href="#" class="gnb-link">글틴</a></li>
+						<li class="gnb-item"><a href="#" class="gnb-link">아카이브</a></li>
+					</ul>
+				</nav>
+				<div class="gnb-util">
+					<a href="#" class="gnb-account-link">로그인/가입</a>
+					<button type="button" class="gnb-icon-btn gnb-search-btn" aria-label="검색">
+						<img src="https://www.figma.com/api/mcp/asset/752a50ab-017a-4ca5-bef6-a2ce48ba26e6" alt="" width="32" height="32">
+					</button>
+					<button type="button" class="gnb-icon-btn gnb-menu-btn" aria-label="전체 메뉴 열기">
+						<img src="https://www.figma.com/api/mcp/asset/fb2f9652-aaaa-4f34-a931-d527bee92b70" alt="" width="32" height="32">
+					</button>
+				</div>
+			</div>
+		</header>
+		<!-- //GNB -->
+
+		<!-- 메인 영역 -->
+		<main id="contents" class="main">
+
+			<!-- ===================================================
+			섹션1: 커버스토리 히어로
+			=================================================== -->
+			<section class="sec-hero" aria-labelledby="hero-title">
+				<!-- 커버스토리 이미지 영역 -->
+				<div class="hero-cover">
+					<div class="hero-cover-bg" aria-hidden="true">
+						<img src="https://www.figma.com/api/mcp/asset/5e009925-decb-4a31-ad4d-297457eab4d5"
+							alt=""
+							fetchpriority="high"
+							class="hero-cover-img">
+					</div>
+					<div class="hero-cover-info">
+						<p class="hero-cate">커버스토리</p>
+						<h2 id="hero-title" class="hero-title">
+							2026년 1월호<br>문장웹진
+						</h2>
+					</div>
+				</div>
+				<!-- //커버스토리 이미지 영역 -->
+
+				<!-- 아티클 리스트 -->
+				<div class="hero-list" aria-label="이번 호 주요 작품">
+					<!-- 왼쪽 컬럼 -->
+					<ul class="hero-col hero-col--left" role="list">
+						<!-- 아티클 1: 시 -->
+						<li class="hero-item">
+							<article class="article-card article-card--large">
+								<a href="#" class="article-card-link">
+									<div class="article-card-thumb">
+										<img src="https://www.figma.com/api/mcp/asset/da7921ec-ef31-470e-b6bb-f4998240c5cb"
+											alt="고라니 두루미 보듯 - 갈대밭 속 고라니와 두루미"
+											loading="lazy"
+											class="article-card-img">
+									</div>
+									<div class="article-card-body">
+										<strong class="article-card-cate">시 l 고라니 두루미 보듯</strong>
+										<p class="article-card-desc">고라니와 두루미가 만나는 모습 보고 나서 '소 닭 보듯'에 빗대 '고라니 두루미 보듯'이라고 써 본다 소와 닭은 몸집의 차이가 너무 커 비유의 마당이 기울지만 고라니와 두루미는 균형이 잡힌다</p>
+										<div class="article-card-meta">
+											<div class="article-card-author">
+												<img src="https://www.figma.com/api/mcp/asset/9d2b16f7-8546-4a1f-a9f2-0e99cf21c8a9"
+													alt="최두석 작가 프로필 사진"
+													class="article-card-avatar">
+												<span class="article-card-name">최두석</span>
+											</div>
+											<div class="article-card-reaction">
+												<span class="reaction-item">
+													<i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+													<span class="sr-only">댓글</span>
+													<span class="reaction-count">2</span>
+												</span>
+												<span class="reaction-item">
+													<i class="ri-heart-line" aria-hidden="true"></i>
+													<span class="sr-only">좋아요</span>
+													<span class="reaction-count">6</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</article>
+						</li>
+						<!-- 아티클 2: 기획 -->
+						<li class="hero-item">
+							<article class="article-card article-card--small">
+								<a href="#" class="article-card-link">
+									<div class="article-card-thumb">
+										<img src="https://www.figma.com/api/mcp/asset/38354d1c-db87-4232-b434-69aeb603fb81"
+											alt="동그라미 그리기 - 찌그러진 동그라미 일러스트"
+											loading="lazy"
+											class="article-card-img">
+									</div>
+									<div class="article-card-body">
+										<strong class="article-card-cate">기획 l 동그라미 그리기</strong>
+										<p class="article-card-desc">얼마 전, 김창환 님이 쓴 글을 읽었다. 책 제목이기도 한 글의 제목은 「찌그러져도 동그라미입니다」. "세상살이라는 게 그렇게 자로 잰 듯 떨어지지 않습니다. 좀 여유롭게 생각하세요.</p>
+										<div class="article-card-meta">
+											<div class="article-card-author">
+												<img src="https://www.figma.com/api/mcp/asset/e04b09fa-d6bd-4fc4-96fe-56e4c50b30e6"
+													alt="최은영 작가 프로필 사진"
+													class="article-card-avatar">
+												<span class="article-card-name">최은영</span>
+											</div>
+											<div class="article-card-reaction">
+												<span class="reaction-item">
+													<i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+													<span class="sr-only">댓글</span>
+													<span class="reaction-count">2</span>
+												</span>
+												<span class="reaction-item">
+													<i class="ri-heart-line" aria-hidden="true"></i>
+													<span class="sr-only">좋아요</span>
+													<span class="reaction-count">6</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</article>
+						</li>
+						<!-- 아티클 3: 모색 -->
+						<li class="hero-item">
+							<article class="article-card article-card--small">
+								<a href="#" class="article-card-link">
+									<div class="article-card-thumb">
+										<img src="https://www.figma.com/api/mcp/asset/54fb30ae-c3f6-4289-885d-4a05acbd6496"
+											alt="가능성의 길이 무한히 확장되는 순간 - 작가 사진"
+											loading="lazy"
+											class="article-card-img">
+									</div>
+									<div class="article-card-body">
+										<strong class="article-card-cate">모색 l 가능성의 길이 무한히 확장되는 순간</strong>
+										<p class="article-card-desc">안녕하세요. 어느덧 마지막 시간이 다가왔네요. 개인적으로는 문장서포터즈 2기 '쓰담'으로 활동하며 다양한 문학 콘텐츠를 여러분들께 소개할 수 있어서 정말 기뻤어요.</p>
+										<div class="article-card-meta">
+											<div class="article-card-author">
+												<img src="https://www.figma.com/api/mcp/asset/ec85f012-fa2e-4adf-9a60-de5921246243"
+													alt="김이성 작가 프로필 사진"
+													class="article-card-avatar">
+												<span class="article-card-name">김이성</span>
+											</div>
+											<div class="article-card-reaction">
+												<span class="reaction-item">
+													<i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+													<span class="sr-only">댓글</span>
+													<span class="reaction-count">2</span>
+												</span>
+												<span class="reaction-item">
+													<i class="ri-heart-line" aria-hidden="true"></i>
+													<span class="sr-only">좋아요</span>
+													<span class="reaction-count">6</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</article>
+						</li>
+					</ul>
+					<!-- //왼쪽 컬럼 -->
+
+					<!-- 오른쪽 컬럼 -->
+					<ul class="hero-col hero-col--right" role="list">
+						<!-- 아티클 4: 소설 -->
+						<li class="hero-item">
+							<article class="article-card article-card--large">
+								<a href="#" class="article-card-link">
+									<div class="article-card-thumb">
+										<img src="https://www.figma.com/api/mcp/asset/9aff53a4-8fb8-4883-b908-534262358df5"
+											alt="늦은 오후의 일 - 구름 사진"
+											loading="lazy"
+											class="article-card-img">
+									</div>
+									<div class="article-card-body">
+										<strong class="article-card-cate">소설 l 늦은 오후의 일</strong>
+										<p class="article-card-desc">남편의 장례를 치르고 집에 가려는데 병원 주차장 한쪽에 서 있는 사람이 눈에 띄었다. 생전 땡볕 아래에서 맨얼굴 내보인 적 없던 듯 희디흰 얼굴이었다.</p>
+										<div class="article-card-meta">
+											<div class="article-card-author">
+												<img src="https://www.figma.com/api/mcp/asset/a3fd0f22-18d4-4fd8-957b-7693176e0125"
+													alt="신연선 작가 프로필 사진"
+													class="article-card-avatar">
+												<span class="article-card-name">신연선</span>
+											</div>
+											<div class="article-card-reaction">
+												<span class="reaction-item">
+													<i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+													<span class="sr-only">댓글</span>
+													<span class="reaction-count">2</span>
+												</span>
+												<span class="reaction-item">
+													<i class="ri-heart-line" aria-hidden="true"></i>
+													<span class="sr-only">좋아요</span>
+													<span class="reaction-count">6</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</article>
+						</li>
+						<!-- 아티클 5: 비평 -->
+						<li class="hero-item">
+							<article class="article-card article-card--large">
+								<a href="#" class="article-card-link">
+									<div class="article-card-thumb">
+										<img src="https://www.figma.com/api/mcp/asset/cb863aa0-1d34-4f73-b570-088a972839f5"
+											alt="K-컬처와 한국이라는 스토리텔링 - 비평 관련 이미지"
+											loading="lazy"
+											class="article-card-img">
+									</div>
+									<div class="article-card-body">
+										<strong class="article-card-cate">비평 l [K-컬처와 한국이라는 스토리텔링3] 오늘의 한국문학과 문학시장에 대하여</strong>
+										<p class="article-card-desc">2020년대 미디어믹스의 원천IP로 주목받는 것은 웹소설이나 웹툰 같은 웹 콘텐츠이다. 다양한 디지털 기기가 일상화되면서 그러한 매체 안에서 즐길 수 있는 더 많은 콘텐츠가 요구되었고.</p>
+										<div class="article-card-meta">
+											<div class="article-card-author">
+												<img src="https://www.figma.com/api/mcp/asset/e04b09fa-d6bd-4fc4-96fe-56e4c50b30e6"
+													alt="최은영 작가 프로필 사진"
+													class="article-card-avatar">
+												<span class="article-card-name">최은영</span>
+											</div>
+											<div class="article-card-reaction">
+												<span class="reaction-item">
+													<i class="ri-chat-smile-2-line" aria-hidden="true"></i>
+													<span class="sr-only">댓글</span>
+													<span class="reaction-count">2</span>
+												</span>
+												<span class="reaction-item">
+													<i class="ri-heart-line" aria-hidden="true"></i>
+													<span class="sr-only">좋아요</span>
+													<span class="reaction-count">6</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</a>
+							</article>
+						</li>
+					</ul>
+					<!-- //오른쪽 컬럼 -->
+				</div>
+				<!-- //아티클 리스트 -->
+			</section>
+			<!-- //섹션1: 커버스토리 히어로 -->
+
+			<!-- ===================================================
+			섹션2: 문장웹진 카테고리
+			=================================================== -->
+			<section class="sec-webzine" aria-labelledby="webzine-title">
+				<div class="sec-inner sec-inner--webzine">
+					<!-- 섹션 레이블 -->
+					<div class="sec-label">
+						<h2 id="webzine-title" class="sec-heading">문장웹진</h2>
+						<p class="sec-desc">20년 간 다양한 장르의 작가들이<br>기고한 작품들을 만나는 곳</p>
+					</div>
+					<!-- 섹션 콘텐츠 -->
+					<div class="sec-content">
+						<!-- 카테고리 그리드 -->
+						<nav class="category-grid" aria-label="문장웹진 카테고리">
+							<ul class="category-row" role="list">
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/67fa554d-9392-4cb8-aab0-13ce1a72eb55"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">커버스토리</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/802d7497-1e2b-4af6-a5c0-c6ada7c4c668"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">시</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/eddf9125-fc7a-4eb4-94f1-da567c900c4b"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">소설</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+							<ul class="category-row" role="list">
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/a28a7462-056a-4adb-aadf-f3eb4bd4abcb"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">비평</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/acb56fb7-4a76-422f-99e1-7791c7982251"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">기획</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+								<li class="category-item">
+									<a href="#" class="category-link">
+										<div class="category-bg" aria-hidden="true">
+											<img src="https://www.figma.com/api/mcp/asset/5ec98156-effa-4479-8e3b-3fc5fafa047a"
+												alt=""
+												loading="lazy"
+												class="category-bg-img">
+										</div>
+										<div class="category-info">
+											<strong class="category-name">모색</strong>
+											<span class="category-btn">보러가기</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<!-- //카테고리 그리드 -->
+
+						<!-- 문장, 콤마 배너 -->
+						<div class="comma-banner">
+							<div class="comma-banner-bg" aria-hidden="true">
+								<img src="https://www.figma.com/api/mcp/asset/d70ad9d1-929f-4d33-b046-e9de066a66d9"
+									alt=""
+									loading="lazy"
+									class="comma-banner-bg-img">
+							</div>
+							<p class="comma-banner-desc">쉼표와 함께 느끼는 문장의 아름다움</p>
+							<div class="comma-banner-title">
+								<strong class="comma-name">문장, 콤마</strong>
+								<img src="https://www.figma.com/api/mcp/asset/52b98eb3-28f6-41c5-bd74-a19df4720662"
+									alt=""
+									aria-hidden="true"
+									class="comma-icon">
+							</div>
+							<a href="#" class="comma-banner-link">
+								보러가기
+								<i class="ri-arrow-right-line" aria-hidden="true"></i>
+							</a>
+						</div>
+						<!-- //문장, 콤마 배너 -->
+					</div>
+					<!-- //섹션 콘텐츠 -->
+				</div>
+			</section>
+			<!-- //섹션2: 문장웹진 카테고리 -->
+
+			<!-- ===================================================
+			섹션3: 글틴 홍보
+			=================================================== -->
+			<section class="sec-teen" aria-labelledby="teen-title">
+				<div class="teen-heading-wrap">
+					<p class="teen-pre">청소년을 위한</p>
+					<h2 id="teen-title" class="teen-title">문학플랫폼, <em class="teen-brand">글틴</em></h2>
+				</div>
+				<p class="teen-desc">글틴은 문학에 관심 있는 청소년을 위한 국내 유일의 온라인 문학 플랫폼입니다. 직접 업로드한 창작물은 또래 및 멘토작가에게 피드백을 받을 수 있으며, 매월 '월장원' 및 연말 문장청소년문학상 수상 기회를 제공합니다. 또한 다양한 온·오프라인 프로그램을 통해 더욱 풍부한 문학 경험을 쌓을 수 있습니다.</p>
+				<a href="#" class="teen-link">
+					글틴
+					<i class="ri-arrow-right-line" aria-hidden="true"></i>
+				</a>
+			</section>
+			<!-- //섹션3: 글틴 홍보 -->
+
+			<!-- ===================================================
+			섹션4: 문장소식
+			=================================================== -->
+			<section class="sec-news" aria-labelledby="news-title">
+				<div class="sec-inner">
+					<div class="sec-label">
+						<h2 id="news-title" class="sec-heading">문장소식</h2>
+					</div>
+					<div class="sec-content">
+						<div class="news-header">
+							<a href="#" class="view-all-link" aria-label="문장소식 전체보기">
+								전체보기
+								<i class="ri-add-line" aria-hidden="true"></i>
+							</a>
+						</div>
+						<ul class="news-list" role="list">
+							<!-- 뉴스 카드 1 -->
+							<li class="news-item">
+								<article class="news-card">
+									<a href="#" class="news-card-link">
+										<div class="news-card-thumb">
+											<img src="https://www.figma.com/api/mcp/asset/7fbe0259-79ef-49f7-8c0e-155a5485ef8b"
+												alt="아르코문학작가펠로우십 전시 포스터"
+												loading="lazy"
+												class="news-card-img">
+										</div>
+										<div class="news-card-body">
+											<p class="news-card-title">아르코문학작가펠로우십×아르코미술관 연계 텍스트 비평 전시(~11.11(화))</p>
+											<div class="news-card-meta">
+												<time datetime="2025-12-12" class="news-card-date">2025.12.12</time>
+												<span class="news-badge" aria-label="새 소식">N</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							</li>
+							<!-- 뉴스 카드 2 -->
+							<li class="news-item">
+								<article class="news-card">
+									<a href="#" class="news-card-link">
+										<div class="news-card-thumb news-card-thumb--green">
+											<img src="https://www.figma.com/api/mcp/asset/fe8e62d0-7f35-471c-9dde-c3a8a46efe23"
+												alt="2025년 문장서포터즈 모집공고 이미지"
+												loading="lazy"
+												class="news-card-img">
+											<img src="https://www.figma.com/api/mcp/asset/82141789-fd2b-4d85-949a-2166e95e7359"
+												alt=""
+												loading="lazy"
+												aria-hidden="true"
+												class="news-card-img news-card-img--secondary">
+										</div>
+										<div class="news-card-body">
+											<p class="news-card-title">아르코문학작가펠로우십×아르코미술관 연계 텍스트 비평 전시(~11.11(화))</p>
+											<div class="news-card-meta">
+												<time datetime="2025-12-12" class="news-card-date">2025.12.12</time>
+												<span class="news-badge" aria-label="새 소식">N</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							</li>
+							<!-- 뉴스 카드 3 -->
+							<li class="news-item">
+								<article class="news-card">
+									<a href="#" class="news-card-link">
+										<div class="news-card-thumb news-card-thumb--teal">
+											<img src="https://www.figma.com/api/mcp/asset/ef8eacb9-fc72-4080-883c-71c2529199ad"
+												alt="소설가의방 작품집 발간 기념 이미지"
+												loading="lazy"
+												class="news-card-img">
+											<img src="https://www.figma.com/api/mcp/asset/c79261e3-6558-4c1a-ab38-717374b9a9bf"
+												alt=""
+												loading="lazy"
+												aria-hidden="true"
+												class="news-card-img news-card-img--secondary">
+										</div>
+										<div class="news-card-body">
+											<p class="news-card-title">아르코문학작가펠로우십×아르코미술관 연계 텍스트 비평 전시(~11.11(화))</p>
+											<div class="news-card-meta">
+												<time datetime="2025-12-12" class="news-card-date">2025.12.12</time>
+												<span class="news-badge" aria-label="새 소식">N</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							</li>
+							<!-- 뉴스 카드 4 -->
+							<li class="news-item">
+								<article class="news-card">
+									<a href="#" class="news-card-link">
+										<div class="news-card-thumb news-card-thumb--yellow">
+											<img src="https://www.figma.com/api/mcp/asset/668fd2a7-4749-4e42-a817-bfffb1fbf234"
+												alt="호텔프린스 소설가의 방 입주작가 모집 로고"
+												loading="lazy"
+												class="news-card-img news-card-img--poster">
+											<p class="news-card-thumb-txt">2025년도<br>호텔프린스 소설가의 방<br>상반기(1분기) 입주작가 모집</p>
+										</div>
+										<div class="news-card-body">
+											<p class="news-card-title">2025년 1분기 소설가의방 입주작가 모집</p>
+											<div class="news-card-meta">
+												<time datetime="2025-12-12" class="news-card-date">2025.12.12</time>
+											</div>
+										</div>
+									</a>
+								</article>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- //섹션4: 문장소식 -->
+
+			<!-- ===================================================
+			섹션5: 아카이브
+			=================================================== -->
+			<section class="sec-archive" aria-labelledby="archive-title">
+				<div class="sec-inner sec-inner--archive">
+					<div class="sec-label">
+						<h2 id="archive-title" class="sec-heading sec-heading--archive">아카이브</h2>
+					</div>
+					<div class="sec-content sec-content--archive">
+
+						<!-- 아카이브 배너 -->
+						<div class="archive-banner-wrap">
+							<!-- 한국문학 비평 아카이브 -->
+							<a href="#" class="archive-banner archive-banner--dark">
+								<img src="https://www.figma.com/api/mcp/asset/830af623-ddcb-49fe-a92d-a158237227e3"
+									alt="한국문학 비평 아카이브"
+									loading="lazy"
+									class="archive-banner-bg">
+								<div class="archive-banner-info">
+									<strong class="archive-banner-title">한국문학 비평 아카이브</strong>
+									<p class="archive-banner-desc">시대와 작품을 가로지르는 눈</p>
+								</div>
+							</a>
+							<!-- 문장콘텐츠 -->
+							<a href="#" class="archive-banner archive-banner--teal">
+								<img src="https://www.figma.com/api/mcp/asset/aa47b370-af37-48a5-adda-0b6e7cd14ebc"
+									alt="문장콘텐츠"
+									loading="lazy"
+									class="archive-banner-bg">
+								<div class="archive-banner-info">
+									<strong class="archive-banner-title">문장콘텐츠</strong>
+									<p class="archive-banner-desc">삶의 여유를 가져다 드리는<br>온라인 문학 서비스</p>
+								</div>
+							</a>
+						</div>
+						<!-- //아카이브 배너 -->
+
+						<!-- 문장의 소리 -->
+						<div class="content-list-wrap">
+							<div class="content-list-header">
+								<h3 class="content-list-title">문장의 소리</h3>
+								<a href="#" class="view-all-link" aria-label="문장의 소리 전체보기">
+									전체보기
+									<i class="ri-add-line" aria-hidden="true"></i>
+								</a>
+							</div>
+							<ul class="content-list" role="list">
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/4d8ed81e-4ac8-4035-9550-583daa63f875"
+													alt="문장의소리 834회 신춘문예 특집 - 연우 시인, 사강은 시인"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">[문장의소리] 죄책감, 지금-여기의 가장 뜨거운 감각 with 연우 시인, 사강은 시인</p>
+												<time datetime="2025-05-08" class="content-card-date">2025.05.08</time>
+											</div>
+										</a>
+									</article>
+								</li>
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/11f7058e-997c-48d8-909b-758f7ab82ad0"
+													alt="문장의소리 833회 - 함윤이 소설가"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">[문장의소리] 현실과 환상의 틈새를 모험하는 여자들 with 함윤이 소설가</p>
+												<time datetime="2025-04-05" class="content-card-date">2025.04.05</time>
+											</div>
+										</a>
+									</article>
+								</li>
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/6034a280-2e64-4573-9140-592d278e6bfb"
+													alt="문장의소리 832회 - 김병운 소설가"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">[문장의소리] '거의' 사랑 말고 '진짜' 사랑? with 김병운 소설가</p>
+												<time datetime="2025-03-06" class="content-card-date">2025.03.06</time>
+											</div>
+										</a>
+									</article>
+								</li>
+							</ul>
+						</div>
+						<!-- //문장의 소리 -->
+
+						<!-- 문학집배원 -->
+						<div class="content-list-wrap">
+							<div class="content-list-header">
+								<h3 class="content-list-title">문학집배원</h3>
+								<a href="#" class="view-all-link" aria-label="문학집배원 전체보기">
+									전체보기
+									<i class="ri-add-line" aria-hidden="true"></i>
+								</a>
+							</div>
+							<ul class="content-list" role="list">
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/e396a59f-e11f-4bcf-8b69-76d2c6baca85"
+													alt="임솔아 덩 - 창밖을 내다보다 멍든 바나나를 먹었다"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">창밖을 내다보다 멍든 바나나를 먹었다</p>
+												<time datetime="2025-05-08" class="content-card-date">2025.05.08</time>
+											</div>
+										</a>
+									</article>
+								</li>
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/813d38a6-1049-4e84-a83e-c8b047e89c32"
+													alt="함유 세컨드핸드 - 한번쯤 그래 보고 싶었어"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">한번쯤 그래 보고 싶었어, 다르게 살아 보고 싶었어</p>
+												<time datetime="2025-04-05" class="content-card-date">2025.04.05</time>
+											</div>
+										</a>
+									</article>
+								</li>
+								<li class="content-item">
+									<article class="content-card">
+										<a href="#" class="content-card-link">
+											<div class="content-card-thumb">
+												<img src="https://www.figma.com/api/mcp/asset/0e023fc0-ca57-4c60-a05d-ecfddb6359c3"
+													alt="조용우 세컨드핸드 - 지나간 것들의 따뜻한 속삭임"
+													loading="lazy"
+													class="content-card-img">
+											</div>
+											<div class="content-card-body">
+												<p class="content-card-title">지나간 것들의 따뜻한 속삭임</p>
+												<time datetime="2025-03-06" class="content-card-date">2025.03.06</time>
+											</div>
+										</a>
+									</article>
+								</li>
+							</ul>
+						</div>
+						<!-- //문학집배원 -->
+
+					</div>
+					<!-- //sec-content -->
+				</div>
+			</section>
+			<!-- //섹션5: 아카이브 -->
+
+		</main>
+		<!-- //메인 영역 -->
+
+		<!-- 푸터 -->
+		<footer id="footer" class="footer" role="contentinfo">
+			<div class="footer-inner">
+				<div class="footer-logo">
+					<strong class="footer-site-name">문학광장</strong>
+				</div>
+				<div class="footer-info">
+					<address class="footer-address">
+						<span>한국문화예술위원회</span>
+						<span>서울특별시 종로구 동숭길 3</span>
+						<span>Tel: 02-760-4500</span>
+					</address>
+					<p class="footer-copy">© Korea Arts Council. All rights reserved.</p>
+				</div>
+				<nav class="footer-nav" aria-label="푸터 메뉴">
+					<ul class="footer-nav-list" role="list">
+						<li><a href="#">이용약관</a></li>
+						<li><a href="#">개인정보처리방침</a></li>
+						<li><a href="#">저작권 정책</a></li>
+						<li><a href="#">접근성 안내</a></li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+		<!-- //푸터 -->
+
 	</div>
 
 	<!-- 메인 JS -->
@@ -83,5 +834,3 @@
 </body>
 
 </html>
-
-

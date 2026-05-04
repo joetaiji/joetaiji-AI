@@ -1,147 +1,274 @@
-$(function () { 
+/* ==========================================================================
+문학광장 메인 페이지 JavaScript
+========================================================================== */
 
-	/* swiper slides */	
-	const btnNext = ".swiper-button-next",
-		  btnPrev = ".swiper-button-prev",
-		  paging = ".swiper-pagination"
+;(function ($) {
+    'use strict';
 
-	var slides = { 
+    /* ------------------------------------------------------------------
+    공통 상수
+    ------------------------------------------------------------------ */
+    const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const AC = 'is-active';
 
-		visual: new Swiper(".main-vban-wrap .swiper", {	
-			//lazy: true,	
-			//spaceBetween: 20,	
-			slidesPerView: "auto",
-			centeredSlides: true,
-			autoplay: {
-				delay: 5000,
-				pauseOnMouseEnter: true,
-			},
-			loop: true,
-			//loopAdditionalSlides: 1,
-			navigation: {
-				nextEl: btnNext,
-				prevEl: btnPrev,
-			},
-			pagination: {
-				el: paging,
-				clickable: true,
-				renderBullet: function (index, className) {
-					return `<span class="${className}" role="button"> 상단 메인배너 ${index + 1}번 슬라이드로 이동</span>`;
-				}
-			}
-		}),
+    /* ------------------------------------------------------------------
+    GSAP + ScrollTrigger 등록
+    ------------------------------------------------------------------ */
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
-		popupzone: new Swiper(".popupzone .swiper", {
-			//lazy: true,
-			autoplay: {
-				delay: 4000
-			},
-			loop: this.SwiperLength > 1,
-			watchOverflow: true,
-			//effect: "fade",
-			navigation: {
-				nextEl: btnNext,
-				prevEl: btnPrev,
-			},
-			pagination: {
-				el: paging,				
-				type: "fraction"
-			}
-		}),
-	
-		banner: new Swiper(".site-banner .swiper", { 
-			//lazy: true,
-			slidesPerView: 1,
-			centeredSlides: true,			
-			autoplay: true,
-			loop: true,
-			navigation: {
-				nextEl: btnNext,
-				prevEl: btnPrev,
-			},
-			pagination: {
-				el: paging,
-				clickable: true,
-				renderBullet: function (index, className) {
-                    return `<span class="${className}" role="button"> 하단 사이트 롤링배너 ${index + 1}번 슬라이드로 이동</span>`;
+    /* ------------------------------------------------------------------
+    GSAP 스크롤 애니메이션
+    ------------------------------------------------------------------ */
+    function initScrollAnimations() {
+        if (REDUCED_MOTION || typeof gsap === 'undefined') return;
+
+        // 각 섹션 내 [data-anim] 요소 순차 등장
+        $('[data-anim]').each(function (i, el) {
+            const $section = $(el).closest('section');
+            gsap.fromTo(
+                el,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none',
+                    }
                 }
-			},
-			breakpoints: {
-				1024: {
-					slidesPerView: 3,
-					//spaceBetween: 20
-				},
-				1280: {
-					slidesPerView: 5,
-					//spaceBetween: 20
-				}
-			}
-		})
-	};
+            );
+        });
 
-	$(".swiper-autoplay button").on("click", function(){
-		let slideType = $(this).data("swiper");
-		var swiperSlide = slides[slideType];
-		$(this).removeClass(AC).siblings().addClass(AC);
-		$(this).hasClass("swiper-button-pause") ? swiperSlide.autoplay.stop() : swiperSlide.autoplay.start();
-	})
+        // 섹션 레이블 & 섹션 컨텐츠 순차 등장 (stagger)
+        gsap.utils.toArray('.sec-inner').forEach((inner) => {
+            const label  = inner.querySelector('.sec-label');
+            const content = inner.querySelector('.sec-content');
+            if (!label || !content) return;
 
-	$('.swiper-pagination-current').before('<span class="sr-only">현재 슬라이드</span>')
-	$('.swiper-pagination-total').before('<span class="sr-only">전체 슬라이드 개수</span>')
-	$(btnPrev).add(btnNext).removeAttr('aria-label');
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: inner,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                }
+            });
 
-	tabs(".news-wrap .tab-nav", ".news-wrap .tab-cont")
+            tl.fromTo(label, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' })
+              .fromTo(content, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.3');
+        });
 
-})
+        // 뉴스 카드 stagger
+        gsap.utils.toArray('.news-list, .content-list').forEach((list) => {
+            const items = list.querySelectorAll('li');
+            gsap.fromTo(
+                items,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.55,
+                    ease: 'power2.out',
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: list,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none',
+                    }
+                }
+            );
+        });
 
-/* ============================================================
-fullPage.js 초기화
-============================================================ */
-;(function () {
-	if (!document.getElementById('fullpage')) return;
+        // 카테고리 그리드 row 순차 등장
+        gsap.utils.toArray('.category-row').forEach((row, i) => {
+            const items = row.querySelectorAll('.category-item');
+            gsap.fromTo(
+                items,
+                { opacity: 0, scale: 0.96 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.55,
+                    ease: 'power2.out',
+                    stagger: 0.08,
+                    scrollTrigger: {
+                        trigger: row,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none',
+                    }
+                }
+            );
+        });
 
-	const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	/* scss _mixins $pad(1024px) 이하에서 일반 스크롤 — 미만이므로 1025 */
-	const FP_RESPONSIVE_WIDTH = 1025;
+        // 아카이브 배너 등장
+        const archiveBanners = document.querySelectorAll('.archive-banner');
+        if (archiveBanners.length) {
+            gsap.fromTo(
+                archiveBanners,
+                { opacity: 0, x: -30 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.65,
+                    ease: 'power2.out',
+                    stagger: 0.15,
+                    scrollTrigger: {
+                        trigger: '.archive-banner-wrap',
+                        start: 'top 88%',
+                        toggleActions: 'play none none none',
+                    }
+                }
+            );
+        }
 
-	new fullpage('#fullpage', {
-		licenseKey: 'gplv3-license',
+        // 히어로 텍스트 등장
+        const heroCover = document.querySelector('.hero-cover-info');
+        if (heroCover) {
+            gsap.fromTo(
+                heroCover.children,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    stagger: 0.15,
+                    delay: 0.2,
+                }
+            );
+        }
 
-		responsiveWidth: FP_RESPONSIVE_WIDTH,
+        // 히어로 아티클 카드 stagger
+        gsap.utils.toArray('.hero-col').forEach((col) => {
+            const cards = col.querySelectorAll('.hero-item');
+            gsap.fromTo(
+                cards,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.65,
+                    ease: 'power2.out',
+                    stagger: 0.12,
+                    delay: 0.3,
+                }
+            );
+        });
+    }
 
-		autoScrolling: true,
-		scrollHorizontally: false,
-		keyboardScrolling: true,
-		touchSensitivity: 15,
-		scrollingSpeed: REDUCED_MOTION ? 0 : 700,
-		easing: 'easeInOutCubic',
-		easingcss3: 'ease',
-		css3: true,
+    /* ------------------------------------------------------------------
+    글틴 섹션 텍스트 marquee (선택 인터랙션)
+    ------------------------------------------------------------------ */
+    // 글틴 섹션 애니메이션 (진입 시)
+    function initTeenSection() {
+        if (REDUCED_MOTION || typeof gsap === 'undefined') return;
 
-		anchors: ['visual', 'service', 'news', 'contact', 'footer'],
-		navigation: true,
-		navigationPosition: 'right',
-		navigationTooltips: ['메인 비주얼', '서비스 안내', '소식 및 공지', '연락처', '푸터'],
-		showActiveTooltip: false,
+        const teen = document.querySelector('.sec-teen');
+        if (!teen) return;
 
-		credits: { enabled: false },
+        gsap.fromTo(
+            '.teen-heading-wrap',
+            { opacity: 0, x: -50 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: teen,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                }
+            }
+        );
 
-		afterLoad: (origin, destination) => {
-			const $section = $(destination.item);
-			const $heading = $section.find('[tabindex="-1"]').first();
-			if ($heading.length) $heading.focus();
+        gsap.fromTo(
+            '.teen-desc',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: teen,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                }
+            }
+        );
+    }
 
-			let label = ($section.attr('aria-label') || '').trim();
-			if (!label) {
-				const lbId = ($section.attr('aria-labelledby') || '').trim().split(/\s+/)[0];
-				if (lbId) label = ($('#' + lbId).text() || '').trim();
-			}
-			$('#sr-announce').text(label ? `${label} 섹션으로 이동했습니다.` : '섹션으로 이동했습니다.');
-		},
+    /* ------------------------------------------------------------------
+    탭 컴포넌트 (뉴스 등에서 활용 가능)
+    ------------------------------------------------------------------ */
+    function tabs(navSel, contSel) {
+        const $nav  = $(navSel);
+        const $cont = $(contSel);
+        if (!$nav.length) return;
 
-		onLeave: (origin) => {
-			$(origin.item).find('[tabindex="-1"]').blur();
-		}
-	});
-}());
+        $nav.find('button, a[role="tab"]').on('click', function (e) {
+            e.preventDefault();
+            const idx = $(this).index();
+            $(this).addClass(AC).siblings().removeClass(AC);
+            $cont.eq(idx).addClass(AC).siblings().removeClass(AC);
+            $(this).attr('aria-selected', 'true').siblings().attr('aria-selected', 'false');
+        });
 
+        // 방향키 지원
+        $nav.find('button, a[role="tab"]').on('keydown', function (e) {
+            const $all = $(navSel).find('button, a[role="tab"]');
+            const idx  = $all.index(this);
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                $all.eq((idx + 1) % $all.length).trigger('click').focus();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                $all.eq((idx - 1 + $all.length) % $all.length).trigger('click').focus();
+            }
+        });
+    }
+
+    /* ------------------------------------------------------------------
+    DOM Ready
+    ------------------------------------------------------------------ */
+    $(function () {
+
+        /* GNB 스크롤 클래스 */
+        const $gnb = $('#header');
+        let ticking = false;
+
+        $(window).on('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    if ($(window).scrollTop() > 10) {
+                        $gnb.addClass('is-scrolled');
+                    } else {
+                        $gnb.removeClass('is-scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        /* 스크롤 애니메이션 초기화 */
+        initScrollAnimations();
+        initTeenSection();
+
+        /* aria-current 처리 */
+        const currentPath = window.location.pathname;
+        $('.gnb-link').each(function () {
+            if ($(this).attr('href') === currentPath) {
+                $(this).attr('aria-current', 'page');
+            }
+        });
+
+    });
+
+}(jQuery));
