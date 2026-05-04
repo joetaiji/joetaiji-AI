@@ -1208,6 +1208,422 @@ GNB 헤더 (Figma GNB component · node 3429:48710)
 }
 
 /* ==========================================================================
+반응형 (Figma mobile_문장웹진>홈 · node 3429:53036 · 뷰포트 ≤768px)
+========================================================================== */
+
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+
+@media (max-width: $bp-mobile) {
+
+    /* 모바일 프레임(360)과 rem 단위 일치: 이 구간에서는 기준 10px 유지 */
+    html {
+        font-size: 10px;
+    }
+
+    /* ----- GNB: 상단 마스트헤드 숨김 · 64px 바 · 로고 중앙 · 햄버거 좌측 ----- */
+    .gnb-masthead {
+        display: none;
+    }
+
+    .gnb-main {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        min-height: 6.4rem;
+        padding: 0 2rem;
+        max-width: 100%;
+    }
+
+    .gnb-brand {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        margin: 0;
+    }
+
+    .gnb-brand-img {
+        width: 11rem;
+        height: auto;
+        max-height: 2.8rem;
+        object-fit: contain;
+    }
+
+    .gnb-nav {
+        display: none;
+    }
+
+    .gnb-menu-btn {
+        position: absolute;
+        left: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+    }
+
+    .gnb-util {
+        position: relative;
+        z-index: 3;
+        gap: 0.8rem;
+    }
+
+    .gnb-account-link {
+        display: none;
+    }
+
+    .gnb-icon-btn {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    /* ----- 히어로: 세로 스택 · 커버 풀폭 450 · 카드 2열 그리드 ----- */
+    .sec-hero {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .hero-cover {
+        flex: none;
+        width: 100%;
+        min-height: 45rem;
+        height: 45rem;
+    }
+
+    .hero-cover-info {
+        left: 2rem;
+        right: 2rem;
+        bottom: 3rem;
+        max-width: 22rem;
+    }
+
+    .hero-cate {
+        font-size: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.8rem, 8vw, 3.6rem);
+        letter-spacing: -0.06rem;
+    }
+
+    .hero-list {
+        flex: none;
+        width: 100%;
+        min-height: 0;
+        padding: 3rem 2rem 4.8rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+        align-content: start;
+    }
+
+    .hero-col {
+        display: contents;
+    }
+
+    .hero-item {
+        min-width: 0;
+    }
+
+    .hero-col--right {
+        padding-top: 0;
+    }
+
+    .hero-col--left .hero-item:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .hero-col--right .hero-item:nth-child(1) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .hero-col--left .hero-item:nth-child(2) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .hero-col--right .hero-item:nth-child(2) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .hero-col--left .hero-item:nth-child(3) {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .article-card--large .article-card-thumb,
+    .article-card--small .article-card-thumb {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .article-card-body {
+        margin-top: 1.6rem;
+        gap: 1rem;
+    }
+
+    .article-card-cate {
+        font-size: 1.4rem;
+        letter-spacing: -0.014rem;
+    }
+
+    .article-card-desc {
+        font-size: 1.2rem;
+        -webkit-line-clamp: 3;
+    }
+
+    .article-card-avatar {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .article-card-name {
+        font-size: 1.3rem;
+    }
+
+    .reaction-item {
+        font-size: 1.2rem;
+    }
+
+    /* ----- 공통 섹션 내부 ----- */
+    .sec-inner {
+        flex-direction: column;
+        padding: 4rem 2rem;
+        gap: 2.4rem;
+    }
+
+    .sec-inner--archive {
+        padding-top: 4rem;
+    }
+
+    .sec-label {
+        width: 100%;
+    }
+
+    .sec-heading {
+        font-size: 3.6rem;
+        letter-spacing: -0.072rem;
+    }
+
+    .sec-heading--archive {
+        padding-top: 0;
+    }
+
+    /* ----- 문장웹진: 카테고리 2열 그리드 ----- */
+    .category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+    }
+
+    .category-row {
+        display: contents;
+    }
+
+    .category-link {
+        height: 15.2rem;
+    }
+
+    .category-name {
+        font-size: 2rem;
+        letter-spacing: -0.02rem;
+    }
+
+    .category-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 1.4rem;
+    }
+
+    /* ----- 문장, 콤마 배너: 세로 스택 ----- */
+    .comma-banner {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        min-height: 12.4rem;
+        padding: 2rem 1.6rem;
+        gap: 1.2rem;
+        margin-top: 1.6rem;
+    }
+
+    .comma-banner-desc {
+        position: relative;
+        white-space: normal;
+        text-align: center;
+        font-size: 1.6rem;
+        order: 1;
+    }
+
+    .comma-banner-title {
+        position: static;
+        transform: none;
+        order: 2;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .comma-name {
+        font-size: 2rem;
+    }
+
+    .comma-banner-link {
+        position: relative;
+        order: 3;
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+
+    /* ----- 글틴 ----- */
+    .sec-teen {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 4rem 2rem;
+        gap: 2rem;
+        min-height: 0;
+    }
+
+    .teen-heading-wrap {
+        width: 100%;
+    }
+
+    .teen-pre,
+    .teen-title {
+        font-size: 2.8rem;
+        letter-spacing: -0.056rem;
+        white-space: normal;
+    }
+
+    .teen-desc {
+        font-size: 1.6rem;
+    }
+
+    .teen-link {
+        align-self: center;
+        font-size: 2rem;
+    }
+
+    /* ----- 문장소식 ----- */
+    .news-header {
+        margin-bottom: 2rem;
+    }
+
+    .news-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+    }
+
+    .news-card-thumb {
+        height: 19rem;
+    }
+
+    .news-card-title {
+        font-size: 1.4rem;
+    }
+
+    .news-card-date {
+        font-size: 1.3rem;
+    }
+
+    .news-badge {
+        width: 1.4rem;
+        height: 1.4rem;
+        font-size: 1rem;
+    }
+
+    /* ----- 아카이브 ----- */
+    .archive-banner-wrap {
+        flex-direction: column;
+        gap: 1.6rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .archive-banner {
+        height: 14rem;
+    }
+
+    .archive-banner-info {
+        left: 2.4rem;
+        right: 2.4rem;
+        max-width: none;
+    }
+
+    .archive-banner-title {
+        font-size: 2rem;
+        white-space: normal;
+    }
+
+    .archive-banner-desc {
+        font-size: 1.4rem;
+    }
+
+    .content-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+    }
+
+    .content-list-wrap + .content-list-wrap {
+        padding-top: 4rem;
+    }
+
+    .content-list-header {
+        margin-bottom: 2rem;
+    }
+
+    .content-list-title {
+        font-size: 2rem;
+    }
+
+    .content-card-thumb {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        min-height: 8.55rem;
+    }
+
+    .content-card-title {
+        font-size: 1.4rem;
+    }
+
+    .content-card-date {
+        font-size: 1.3rem;
+    }
+
+    /* ----- 푸터 ----- */
+    .footer {
+        padding: 3.2rem 2rem;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .footer-nav-list {
+        flex-wrap: wrap;
+        gap: 1.2rem 2rem;
+    }
+}
+
+@media (max-width: $bp-tablet) and (min-width: #{$bp-mobile + 1px}) {
+
+    .hero-title {
+        font-size: clamp(4rem, 5vw, 6rem);
+    }
+
+    .sec-inner {
+        padding-left: 3.2rem;
+        padding-right: 3.2rem;
+    }
+}
+
+/* ==========================================================================
 GSAP 애니메이션 초기 상태
 ========================================================================== */
 
