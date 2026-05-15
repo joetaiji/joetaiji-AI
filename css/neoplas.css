@@ -1,0 +1,1033 @@
+/* ==========================================================================
+   NEOPLAS — 네오플라스 출제문제 CSS
+   Figma: EL89VNY0qYxz3PJodCGGVL / node 1:2
+   Base: 1920px design, html { font-size: 10px }
+========================================================================== */
+
+/* ============================================================
+   1. Reset & Base
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'PretendardGOV', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #000;
+  background: #fff;
+  min-width: 1280px;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+h1, h2, h3 {
+  font-weight: inherit;
+}
+
+/* 스킵 내비게이션 */
+#skip-nav {
+  position: absolute;
+  top: -1000px;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+#skip-nav a {
+  display: block;
+  font-size: 0;
+  line-height: 0;
+}
+
+#skip-nav a:focus,
+#skip-nav a:active {
+  position: absolute;
+  top: 1000px;
+  left: 0;
+  padding: 1rem 2rem;
+  background: #123cba;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* 스크린리더 전용 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   2. 디자인 토큰
+============================================================ */
+:root {
+  --blue:          #123cba;
+  --black:         #000;
+  --white:         #fff;
+  --gray-text:     #555;
+  --gray-bg:       #ededed;
+  --gray-border:   #ddd;
+  --gray-section:  #e2e2e2;
+  --gray-dashed:   #aaa;
+
+  --pad-x:         16rem;    /* 160px — 페이지 좌우 여백 */
+  --inner-w:       1600px;   /* 콘텐츠 최대 폭 */
+  --gnb-h:         12rem;    /* 120px */
+}
+
+/* ============================================================
+   3. GNB 1 — 초기 헤더 (hero 구간)
+============================================================ */
+.gnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--gnb-h);
+  padding: 0 4rem;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  /* transform/opacity는 GSAP이 제어 — CSS transition 없음 */
+}
+
+.gnb-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 2.8rem;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.gnb-nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gnb-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 5.6rem;
+}
+
+.gnb-nav-list a {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--black);
+  line-height: 1.5;
+  white-space: nowrap;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.gnb-nav-list a:hover,
+.gnb-nav-list a:focus-visible {
+  color: var(--blue);
+}
+
+.gnb-contact {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #333;
+  background: var(--gray-bg);
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.gnb-contact:hover,
+.gnb-contact:focus-visible {
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* ============================================================
+   3-2. GNB 2 — 스크롤 pill 메뉴 (node 4:2)
+   backdrop-blur 반투명 pill, 중앙 상단 고정
+============================================================ */
+.gnb-scroll {
+  position: fixed;
+  top: 2rem;                 /* 20px */
+  left: 50%;
+  /* transform / opacity / pointer-events: GSAP이 제어 */
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(12.5px);
+  backdrop-filter: blur(12.5px);
+  border-radius: 2.9rem;     /* 29px */
+  padding: 0.6rem;           /* 6px */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: nowrap;
+}
+
+.gnb-scroll-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.8rem;               /* 8px */
+}
+
+/* 각 탭 아이템 */
+.gnb-scroll-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;    /* 8px 12px */
+  border-radius: 2.4rem;     /* 24px */
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;            /* 20px */
+  color: var(--black);
+  line-height: 1.5;
+  -webkit-transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* 활성 탭: 파란 배경 + 흰 텍스트 */
+.gnb-scroll-item.is-active {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.gnb-scroll-item:hover:not(.is-active),
+.gnb-scroll-item:focus-visible:not(.is-active) {
+  background: rgba(18, 60, 186, 0.08);
+}
+
+/* ============================================================
+   4. Top Area — Hero
+============================================================ */
+.top-area {
+  position: relative;
+  width: 100%;
+  height: 1557px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* ---- 슬로건 ---- */
+.slogan {
+  position: absolute;
+  left: var(--pad-x);
+  top: 240px;
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 8.8rem;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  z-index: 2;
+}
+
+.slogan-line {
+  display: block;
+  color: var(--black);
+  white-space: nowrap;
+  /* 초기 상태: GSAP이 조작 (opacity 0, translateY 50) */
+  opacity: 0;
+  -webkit-transform: translateY(50px);
+  transform: translateY(50px);
+}
+
+.slogan-line.blue {
+  color: var(--blue);
+}
+
+/* ---- NEOPLAS 대형 타이포 (Scroll Section A) ---- */
+/* 배경(gray) 위에 파란색 레이어를 왼쪽에서 오른쪽으로 리빌 */
+.neoplas-text-wrap {
+  position: absolute;
+  /* Scroll section A: top 677px, h 880px → center at 677+440=1117, text h≈213 → top ≈ 1010px */
+  top: 1010px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 1600.527px;
+  height: 213.479px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.neoplas-text-gray,
+.neoplas-text-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1600.527px;
+  height: 213.479px;
+}
+
+.neoplas-text-gray img,
+.neoplas-text-reveal img {
+  width: 1600.527px;
+  height: 213.479px;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+/* 파란색 레이어: overflow hidden → width 0에서 100%로 애니메이션 */
+.neoplas-text-blue {
+  overflow: hidden;
+  width: 0; /* GSAP으로 100%까지 확장 */
+}
+
+.neoplas-text-reveal {
+  width: 1600.527px;
+  height: 213.479px;
+  flex-shrink: 0;
+}
+
+/* ---- 사진 섹션 (Scroll Section B) ---- */
+/* 포토 컨테이너: 1920px 기준 left 791px */
+.photo-section {
+  position: absolute;
+  left: 791px;
+  top: 216px;
+  width: 969px;
+  height: 1341px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.photo {
+  position: absolute;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  -webkit-box-shadow: 1.6rem 1.6rem 3.2rem rgba(0, 0, 0, 0.12);
+  box-shadow: 1.6rem 1.6rem 3.2rem rgba(0, 0, 0, 0.12);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* Photo03: right 0, top 0, 528×296, Y +160 */
+.photo--03 {
+  right: 0;
+  top: 0;
+  width: 528px;
+  height: 296px;
+}
+
+/* Photo04: left 0, top 441, 400×260, Y +100 */
+.photo--04 {
+  left: 0;
+  top: 441px;
+  width: 400px;
+  height: 260px;
+}
+
+/* Photo02: right 78, top 585, 273×371, Y -20 */
+.photo--02 {
+  right: 78px;
+  top: 585px;
+  width: 273px;
+  height: 371px;
+}
+
+/* Photo01: right 261, top 883, 278×278, Y -60 */
+.photo--01 {
+  right: 261px;
+  top: 883px;
+  width: 278px;
+  height: 278px;
+}
+
+/* ============================================================
+   5. 공통 섹션 유틸
+============================================================ */
+.section-inner {
+  max-width: var(--inner-w);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--blue);
+  line-height: 1.5;
+  margin-bottom: 3.6rem;
+}
+
+.section-heading {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 6.4rem;
+  color: var(--black);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+/* ============================================================
+   6. 사업소개 Section
+============================================================ */
+.section-business {
+  padding-bottom: 16rem;
+}
+
+.section-business-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.section-business .section-title-wrap {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 720px;
+}
+
+.section-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0;
+}
+
+.section-body p {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: var(--gray-text);
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   7. R&D Section (Scroll Section C → node 4:154)
+   - .rnd-img-wrap : inset 0 (fullscreen), scale(0.3) → scale(1)
+     transform-origin: center 30% → 시각적 초기 크기 576×324px
+     (1920×0.3=576, 1080×0.3=324 — Figma 치수와 정확히 일치)
+   - .rnd-overlay  : black 40%, opacity 0→1 (스케일 완료 후)
+   - .rnd-typo     : 중앙 텍스트, opacity 0→1 (오버레이 이후)
+============================================================ */
+.section-rnd {
+  position: relative;
+  height: 1080px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* fullscreen 배경 이미지 — scale(0.3)이 초기 상태 */
+.rnd-img-wrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.2rem;        /* 12px: GSAP이 0으로 애니메이션 */
+  overflow: hidden;
+  -webkit-transform: scale(0.3);
+  transform: scale(0.3);
+  /* center 30% → 원점을 section 상단 30% 지점에 고정
+     → 시각적 카드 위치: top 162px (Figma calc(50%-378px)와 동일) */
+  -webkit-transform-origin: center 30%;
+  transform-origin: center 30%;
+  will-change: transform, border-radius;
+}
+
+.rnd-img-wrap img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* BG Layer 2: Energy & Environment (공유 fullscreen, 초기 투명) */
+.rnd-img-wrap-2 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 1;                /* rnd-img-wrap(0) 위, overlay(2) 아래 */
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.rnd-img-wrap-2 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* 검은 오버레이 (rgba 0,0,0,0.4) — 초기 투명 */
+.rnd-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;               /* BG3(2) 위 */
+  will-change: opacity;
+}
+
+/* 텍스트 콘텐츠 블록 공통 — transform 없이 센터링
+   (GSAP y 애니메이션과 CSS transform 충돌 방지)
+   수평: left 50% + margin-left -640px (1280px/2)
+   수직: top/bottom 0 + flex justify-content center         */
+.rnd-typo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -640px;       /* 1280px ÷ 2 */
+  width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 6.4rem;               /* 64px */
+  opacity: 0;
+  text-align: center;
+  z-index: 11;               /* overlay(10) 위 */
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* Content 1 (R&D): GSAP fromTo로 제어 */
+.rnd-typo--1 { }
+
+/* Content 2 (Energy): GSAP fromTo로 제어 */
+.rnd-typo--2 { }
+
+/* BG Layer 3: Healthcare — BG2와 동일 구조, z-index 2 (overlay 아래) */
+.rnd-img-wrap-3 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 2;                /* rnd-img-wrap-2(1) 위, overlay(3) 아래 */
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.rnd-img-wrap-3 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* Content 3 (Healthcare): GSAP fromTo로 제어 */
+.rnd-typo--3 { }
+
+/* "R&D ••" 레이블 행 */
+.rnd-label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.2rem;               /* 12px */
+}
+
+.rnd-label-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;         /* 22px */
+  color: var(--white);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.rnd-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: var(--white);
+  border-radius: 10px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+/* 메인 헤딩 */
+.rnd-heading {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 4.8rem;         /* 48px */
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: -0.02em;  /* -0.96px at 48px */
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* 해시태그 행 */
+.rnd-tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.6rem;               /* 16px */
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.rnd-tags span {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;         /* 18px */
+  color: var(--white);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   9. 기술소개 Section
+============================================================ */
+.section-tech {
+  position: relative;
+}
+
+.tech-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  max-width: var(--inner-w);
+  margin: 0 auto;
+  padding: 20rem 0;
+}
+
+/* 좌측: sticky 고정 (CSS sticky, top 160px) */
+.tech-sticky-col {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 720px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 16rem;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+
+/* 우측: 사진+텍스트 4개, 절대 배치 */
+.tech-photos-col {
+  position: relative;
+  width: 880px;
+  height: 2631px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+/* 공통 tech-item */
+.tech-item {
+  position: absolute;
+  width: 560px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2.8rem;
+}
+
+/* 01: left 0, top 80 */
+.tech-item:nth-child(1) {
+  left: 0;
+  top: 80px;
+}
+
+/* 02: left 320, top 771 */
+.tech-item:nth-child(2),
+.tech-item--right:nth-child(2) {
+  left: 320px;
+  top: 771px;
+}
+
+/* 03: left 0, top 1431 */
+.tech-item:nth-child(3) {
+  left: 0;
+  top: 1431px;
+}
+
+/* 04: left 320, top 2091 */
+.tech-item:nth-child(4),
+.tech-item--right:nth-child(4) {
+  left: 320px;
+  top: 2091px;
+}
+
+/* tech-item--right 클래스로 짝수 항목 위치 지정 */
+.tech-item--right {
+  left: 320px !important;
+}
+
+/* 이미지 */
+.tech-item-img {
+  height: 380px;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.tech-item-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* 타이틀 행 */
+.tech-item-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.tech-num {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--blue);
+  line-height: 1.5;
+  white-space: nowrap;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.tech-divider {
+  display: inline-block;
+  width: 1.6rem;
+  height: 2px;
+  background: var(--black);
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.tech-item-title h3 {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: var(--black);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.tech-desc {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: var(--gray-text);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   10. Footer
+============================================================ */
+.site-footer {
+  background: var(--blue);
+  height: 920px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 8rem var(--pad-x);
+  overflow: hidden;
+  position: relative;
+}
+
+.footer-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+/* 다운로드 행 */
+.footer-download {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-bottom: 2.4rem;
+  border-bottom: 2px solid var(--white);
+}
+
+.footer-brand {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.footer-download-link {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.6rem;
+  color: var(--white);
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.footer-download-link:hover,
+.footer-download-link:focus-visible {
+  opacity: 0.8;
+}
+
+.footer-download-link span {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.footer-download-link img {
+  width: 2.4rem;
+  height: 2.4rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+/* 연락처 행 */
+.footer-contact-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.footer-address {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--white);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.footer-address p {
+  white-space: nowrap;
+}
+
+.footer-copy {
+  font-family: 'PretendardGOV', sans-serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--white);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* 푸터 하단 NEOPLAS 대형 타이포 — outline → fill 애니메이션 */
+.footer-neoplas {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 1;
+  pointer-events: none;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.footer-neoplas-outline,
+.footer-neoplas-fill {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 14vw;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 초기: 외곽선(stroke)만 표시 */
+.footer-neoplas-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.25);
+}
+
+/* fill 레이어: 완전히 오른쪽으로 클립 → JS가 왼쪽부터 열어줌 */
+.footer-neoplas-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--white);
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+}
+
+/* ============================================================
+   11. 포커스 / 접근성
+============================================================ */
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   12. prefers-reduced-motion
+   — 애니메이션 없이 최종 상태로 즉시 표시
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .slogan-line {
+    opacity: 1 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+
+  .neoplas-text-blue {
+    width: 100% !important;
+  }
+
+  .rnd-img-wrap {
+    -webkit-transform: scale(1) !important;
+    transform: scale(1) !important;
+    border-radius: 0 !important;
+  }
+
+  .rnd-overlay,
+  .rnd-img-wrap-2,
+  .rnd-img-wrap-3 {
+    opacity: 1 !important;
+  }
+
+  .rnd-typo--1,
+  .rnd-typo--2 {
+    opacity: 0 !important;  /* 최종 상태: 모두 퇴장 */
+  }
+
+  .rnd-typo--3 {
+    opacity: 1 !important;  /* 최종 슬라이드 표시 */
+  }
+
+  .gnb {
+    opacity: 1 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+
+  .tech-item,
+  .section-business .section-title-wrap,
+  .section-business .section-body,
+  .tech-sticky-col {
+    opacity: 1 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+}
